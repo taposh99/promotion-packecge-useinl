@@ -34,5 +34,8 @@ Route::post('/update-blog',[BlogController::class,'updateBlog'])->name('update.b
 Route::post('delete-blog',[BlogController:: class,'deleteblog'])->name('delete.blog');
 
 
+Route::get('/change-status/{id}',[BlogController::class,'changeStatus']);
+
+
 
 

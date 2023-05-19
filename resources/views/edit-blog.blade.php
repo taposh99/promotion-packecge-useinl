@@ -33,6 +33,7 @@
                             <input type="hidden" name="status" value="{{ $blog->status ? 0 : 1 }}">
                             <button type="submit">{{ $blog->status ? 'Inactivate' : 'Activate' }}</button>
                             <br> <br>
+                            button ty
 
 
                             <input type="submit" value="Update" class="form-control btn btn-danger">

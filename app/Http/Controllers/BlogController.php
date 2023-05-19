@@ -70,4 +70,18 @@ class BlogController extends Controller
         toastr()->success('Update successfully!');
         return back();
     }
+
+      //change status
+
+      public function changeStatus($id){
+        $getStatus = Blog::select('status')->where('id',$id)->first();
+        if($getStatus->status==1){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+        Blog::where('id',$id)->update(['status'=>$status]);
+        toastr()->success('status Update successfully!');       
+         return redirect()->back();
+    }
 }

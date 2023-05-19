@@ -39,7 +39,13 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $blog->blog }}</td>
 
-                                <td>{{ $blog->status ? 'Active' : 'Inactive' }}
+                                <td>
+
+                                @if($blog->status==1)
+                             <a href="{{ url('change-status/'.$blog->id) }}"  class="btn btn-sm btn-success">Active</a>
+                             @else
+                             <a href="{{ url('change-status/'.$blog->id) }}"  class="btn btn-sm btn-danger">Inactive</a>
+                             @endif
 
                                 
                                 </td>

@@ -28,12 +28,17 @@
                             <input type="hidden" value="{{ $blog->id }}" name="blog_id">
                             <label class="">Update blogs : </label>
                             <input type="text" class="form-control" value="{{ $blog->blog }}" name="blog"><br>
+                            <label class="">Update Title : </label>
+                            <input type="text" class="form-control" value="{{ $blog->title }}" name="title"><br>
+                            <label for="banner">Banner:</label>
+                            <input type="file" id="banner" name="banner"><br>
+                            <label for="details">Details:</label>
+                            <textarea id="details" name="details">{{ $blog->details }}</textarea><br>
 
-                            <label class="">Status : </label>
-                            <input type="hidden" name="status" value="{{ $blog->status ? 0 : 1 }}">
-                            <button type="submit">{{ $blog->status ? 'Inactivate' : 'Activate' }}</button>
+
+                
                             <br> <br>
-                            button ty
+                  
 
 
                             <input type="submit" value="Update" class="form-control btn btn-danger">

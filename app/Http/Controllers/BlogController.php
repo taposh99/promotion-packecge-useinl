@@ -84,7 +84,7 @@ class BlogController extends Controller
 
         $blog = Blog::find($request->blog_id);
         $blog->blog = $request->blog;
-        $blog->status = $request->input('status');
+        
        
    
         $blog->save();

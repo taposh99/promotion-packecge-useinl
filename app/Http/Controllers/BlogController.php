@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function blog(Request $request)
     {
-         //dd($request);
+        // dd($request);
      
 
       
@@ -23,11 +23,40 @@ class BlogController extends Controller
 
 
 
+        // $status = ($request->input('status') === 'active') ? true : false;
+        // $image = $request->file('image');
+        // $imageName = time() . '.' . $image->getClientOriginalExtension();
+        // $image->move(public_path('images'), $imageName);
+
+        // Blog::create([
+        //     'status' => $status,
+        //     'blog' => $request->input('blog'),
+        //     'blog' => $request->input('title'),
+        //     'blog' => $request->input('banner'),
+        //     'blog' => $request->input('details'),
+
+        //     $post = new Blog;
+        //     'status' => $status;
+        // $post->title = $validatedData['title'];
+        // $post->image = $imageName;
+        // $post->details = $validatedData['details'];
+        // $post->save();
+       
+            
+        // ]);
+
+        $imageName = time().'.'.$request->banner->extension();
+        $request->banner->move(public_path('images'), $imageName);
         $status = ($request->input('status') === 'active') ? true : false;
+     
 
         Blog::create([
             'status' => $status,
-            'blog' => $request->input('blog'),
+            'blog' => $request->blog,
+            'title' => $request->title,
+            'banner' => $imageName,
+            'details' => $request->details,
+            
         ]);
 
         

@@ -34,10 +34,20 @@
               <label class="">Create New Blog : </label>
               <input type="text" class="form-control" name="blog" required>
               <br>
+              <label class="">Title : </label>
+              <input type="text" class="form-control" name="title" nullable>
+              <br>
+              <label class="">Banner : </label>
+              <input type="file" id="image" name="banner">
+              <br> <br>
+              <label class="">Details : </label>
+              <textarea type="text" name="details" id="message" rows="4" cols="40"></textarea>
+              <br>
+              <label class="">Status : </label>
               <select class="form-control" id="status" name="status">
-        <option value="active">Active</option>
-        <option value="inactive">Inactive</option>
-    </select>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
               <br><br>
               <div class="form-floating mb-3 mb-md-0">
               </div>

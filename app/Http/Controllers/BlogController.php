@@ -46,7 +46,7 @@ class BlogController extends Controller
         // ]);
 
         $imageName = time().'.'.$request->banner->extension();
-        $request->banner->move(public_path('images'), $imageName);
+        $request->banner->move(public_path('images/banner'), $imageName);
         $status = ($request->input('status') === 'active') ? true : false;
      
 
@@ -54,8 +54,9 @@ class BlogController extends Controller
             'status' => $status,
             'blog' => $request->blog,
             'title' => $request->title,
-            'banner' => $imageName,
             'details' => $request->details,
+            'banner' => $imageName,
+         
             
         ]);
 
@@ -84,10 +85,15 @@ class BlogController extends Controller
 
         $blog = Blog::find($request->blog_id);
         $blog->blog = $request->blog;
+        $blog->title = $request->title;
+        $blog->details = $request->details;
         
-       
-   
         $blog->save();
+
+
+
+
+        
         toastr()->success('Update successfully!');
         return redirect('/all-blog');
     }

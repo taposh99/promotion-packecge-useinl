@@ -43,7 +43,7 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $blog->blog }}</td>
                                 <td>{{ $blog->title }}</td>
-                                <td> <img src="{{ asset('images/' . $blog->banner) }}" alt="Post Image"  height="200" width="300">
+                                <td><img src="{{asset('images/banner/'.$blog->banner)}}" width="55px" height="55px"></td>
                                 </td>
                                 <td>{{ $blog->details }}</td>
 

@@ -65,6 +65,8 @@
                                         <input type="hidden" name="blog_id" value="{{ $blog->id }}">
                                         <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are You Sure !!')">
                                     </form>
+
+                                    
                                 </td>
                             </tr>
                             @endforeach

@@ -54,8 +54,6 @@
                                     @else
                                     <a href="{{ url('change-status/'.$blog->id) }}" class="btn btn-sm btn-danger">Inactive</a>
                                     @endif
-
-
                                 </td>
 
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->string('blog');
             $table->string('title');
-            $table->string('banner');
+            $table->string('banner')->nullable();
             $table->string('details');
           
             $table->timestamps();

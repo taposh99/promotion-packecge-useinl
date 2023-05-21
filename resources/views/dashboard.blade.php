@@ -26,6 +26,10 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
+                <!-- message -->
+                @if($errors->any())
+                    {!! implode('', $errors->all('<div>:message</div>')) !!}
+                @endif
           <div class="card-body">
             <form action="{{ route('new.blog') }}" method="post" enctype="multipart/form-data">
 
@@ -38,7 +42,7 @@
               <input type="text" class="form-control" name="title" nullable>
               <br>
               <label class="">Banner : </label>
-              <input type="file" id="image" name="banner">
+              <input type="file" id="image" name="banner" nullable>
               <br> <br>
               <label class="">Details : </label>
               <textarea type="text" name="details" id="message" rows="4" cols="40"></textarea>

@@ -11,14 +11,14 @@ class BlogController extends Controller
     public function blog(Request $request)
     {
         // dd($request);
-     
 
-      
+
+
         // $blog = new Blog();
         // $blog->blog = $request->blog;
         // $blog['is_active'] = ($blog['status'] === 'active') ? true : false;
         // $blog => $status;
-     
+
         // $blog->save();
 
 
@@ -41,14 +41,14 @@ class BlogController extends Controller
         // $post->image = $imageName;
         // $post->details = $validatedData['details'];
         // $post->save();
-       
-            
+
+
         // ]);
 
-        $imageName = time().'.'.$request->banner->extension();
+        $imageName = time() . '.' . $request->banner->extension();
         $request->banner->move(public_path('images/banner'), $imageName);
         $status = ($request->input('status') === 'active') ? true : false;
-     
+
 
         Blog::create([
             'status' => $status,
@@ -56,14 +56,14 @@ class BlogController extends Controller
             'title' => $request->title,
             'details' => $request->details,
             'banner' => $imageName,
-         
-            
+
+
         ]);
 
-        
+
         toastr()->success('Data has been saved successfully!');
         return back();
-    
+
         // return redirect('/all-blog')->with('message', 'Success');
     }
 
@@ -71,7 +71,7 @@ class BlogController extends Controller
     {
         return view('allBlog', [
             'blogs' => Blog::all(),
-          
+
         ]);
     }
     public function editblog($id)
@@ -80,43 +80,49 @@ class BlogController extends Controller
             'blog' => Blog::find($id)
         ]);
     }
-    public function updateBlog(Request $request)
+    public function updateBlog(Request $request, Blog $blog)
     {
+
+        if ($files = $request->file('banner')) {
+            $destinationPath = 'public/images/banner'; // upload path
+            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage);
+            $update['banner'] = "$profileImage";
+            }
 
         $blog = Blog::find($request->blog_id);
         $blog->blog = $request->blog;
         $blog->title = $request->title;
         $blog->details = $request->details;
-        
+        $blog->banner = $request->banner;
         $blog->save();
 
-
-
-
         
+
         toastr()->success('Update successfully!');
         return redirect('/all-blog');
     }
     public function deleteblog(Request $request)
     {
         $blog = Blog::find($request->blog_id);
-      
+
         $blog->delete();
         toastr()->success('Update successfully!');
         return back();
     }
 
-      //change status
+    //change status
 
-      public function changeStatus($id){
-        $getStatus = Blog::select('status')->where('id',$id)->first();
-        if($getStatus->status==1){
+    public function changeStatus($id)
+    {
+        $getStatus = Blog::select('status')->where('id', $id)->first();
+        if ($getStatus->status == 1) {
             $status = 0;
-        }else{
+        } else {
             $status = 1;
         }
-        Blog::where('id',$id)->update(['status'=>$status]);
-        toastr()->success('status Update successfully!');       
-         return redirect()->back();
+        Blog::where('id', $id)->update(['status' => $status]);
+        toastr()->success('status Update successfully!');
+        return redirect()->back();
     }
 }

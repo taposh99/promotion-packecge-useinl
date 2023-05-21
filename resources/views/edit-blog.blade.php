@@ -31,7 +31,9 @@
                             <label class="">Update Title : </label>
                             <input type="text" class="form-control" value="{{ $blog->title }}" name="title"><br>
                             <label for="banner">Banner:</label>
-                            <input type="file" id="banner" name="banner"><br>
+                            <input type="file" id="banner" name="banner" nullable>
+                            <img src="/images/banner/{{ $blog->banner }}" width="55px" height="55px">
+                            <br>
                             <label for="details">Details:</label>
                             <textarea id="details" name="details">{{ $blog->details }}</textarea><br>
 

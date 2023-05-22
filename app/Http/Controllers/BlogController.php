@@ -83,33 +83,54 @@ class BlogController extends Controller
     public function updateBlog(Request $request, Blog $blog)
     {
 
-        if ($files = $request->file('banner')) {
-            $destinationPath = 'public/images/banner'; // upload path
-            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-            $files->move($destinationPath, $profileImage);
-            $update['banner'] = "$profileImage";
-            }
+        $imageName = time() . '.' . $request->banner->extension();
+        $request->banner->move(public_path('images/banner'), $imageName);
+        $status = ($request->input('status') === 'active') ? true : false;
 
         $blog = Blog::find($request->blog_id);
         $blog->blog = $request->blog;
         $blog->title = $request->title;
         $blog->details = $request->details;
-        $blog->banner = $request->banner;
+        $blog->banner = $imageName;
         $blog->save();
-
-        
-
         toastr()->success('Update successfully!');
         return redirect('/all-blog');
     }
     public function deleteblog(Request $request)
     {
         $blog = Blog::find($request->blog_id);
-
+        $banner = str_replace('\\', '/', public_path('/images/banner/' . $blog->banner));
+        if (is_file($banner)){
+            unlink($banner);
+            $blog->delete();
+            toastr()->success('Deleted  successfully!');
+            return redirect()->route('all.blog');
+        }else {
+            $blog->delete();
+            toastr()->success('Deleted  successfully!');
+            return back();
+        }
         $blog->delete();
         toastr()->success('Update successfully!');
         return back();
     }
+
+
+    // $employee = Employee::find($id);
+    // $image = str_replace('\\', '/', public_path('/upload/' . $employee->image));
+    // if (is_file($image)){
+    //     unlink($image);
+    //     $employee->delete();
+    //     toastr()->success('Deleted  successfully!');
+    //     return redirect()->route('employee');
+    // }else {
+    //     $employee->delete();
+    //     toastr()->success('Deleted  successfully!');
+    //     return redirect()->back();
+    // }
+
+
+
 
     //change status
 

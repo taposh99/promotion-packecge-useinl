@@ -30,10 +30,19 @@
                             <input type="text" class="form-control" value="{{ $blog->blog }}" name="blog"><br>
                             <label class="">Update Title : </label>
                             <input type="text" class="form-control" value="{{ $blog->title }}" name="title"><br>
-                            <label for="banner">Banner:</label>
+
+                            
+                                <label for="" class="col-sm-2 col-form-label">Banner:</label>
+                                <input type="file" id="banner" class="form-control" name="banner">
+
+                                <img width="55px" height="55px" id="showImage" src="{{asset('images/banner')}}/{{ $blog->banner }}" alt="Card image cap">
+
+                            {{-- <label for="banner">Banner:</label>
                             <input type="file" id="banner" name="banner" nullable>
-                            <img src="/images/banner/{{ $blog->banner }}" width="55px" height="55px">
+                            <img src="/images/banner/{{ $blog->banner }}" width="55px" height="55px"> --}}
                             <br>
+
+
                             <label for="details">Details:</label>
                             <textarea id="details" name="details">{{ $blog->details }}</textarea><br>
 

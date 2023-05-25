@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Simple Project</title>
 
     <link rel="stylesheet" href="{{asset('frontEndAsset')}}/css/bootstrap.css">
@@ -56,12 +57,14 @@
 
                                 <td>
 
-                                    <a href="{{ route('edit.blog',['id'=>$blog->id]) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('edit.blog',['id'=>$blog->id]) }}"><i class="fa fa-edit"></i></a>
                                     <form action="{{ route('delete.blog') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="blog_id" value="{{ $blog->id }}">
-                                        <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are You Sure !!')">
-                                    </form
+                                        <button style="font-size:13px;border: none;background: none;padding: 0;color: inherit;font: inherit;cursor: pointer;" role="button" onclick="return confirm('Are You Sure !!')"><i class="fa fa-trash" aria-hidden="true" style="color: red;"></i></button>
+                                    </form>
+
+
                                 </td>
                             </tr>
                             @endforeach

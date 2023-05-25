@@ -12,8 +12,6 @@
 
 <body>
 
-
-    <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="text-center"> {{ session('message') }}</h1>
@@ -29,9 +27,9 @@
                         <table class="table table-hover table-bordered">
                             <tr>
                                 <th>sl</th>
-                                <th>Blog total List</th>
-                                <th>Tittle</th>
-                                <th>Banner</th>
+                                <th>Blog List</th>
+                                <th>Tittle list</th>
+                                <th>Banner list</th>
                                 <th>Details</th>
                                 <th>status</th>
 
@@ -63,9 +61,7 @@
                                         @csrf
                                         <input type="hidden" name="blog_id" value="{{ $blog->id }}">
                                         <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are You Sure !!')">
-                                    </form>
-
-                                    
+                                    </form
                                 </td>
                             </tr>
                             @endforeach

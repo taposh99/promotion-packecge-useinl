@@ -37,7 +37,15 @@
 
                                 <img width="55px" height="55px" id="showImage" src="{{asset('images/banner')}}/{{ $blog->banner }}" alt="Card image cap">
 
-                       
+                       <br>
+                       <div class="col-lg-6 mb-5">
+                                <label class="">Status : </label>
+                                <select class="form-control" id="status" value="{{ $blog->status }} name="status">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+
                             <br>
 
 

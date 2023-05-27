@@ -80,8 +80,10 @@ class BlogController extends Controller
             'blog' => Blog::find($id)
         ]);
     }
-    public function update(Request $request, Blog $blogs)
+    public function update(Request $request, Blog $up_blogs)
     {
+
+        $status = ($request->input('status') === 'active') ? true : false;
 
         $filename = '';
         if ($request->hasfile('banner')) {
@@ -92,12 +94,13 @@ class BlogController extends Controller
         // $imageName = time() . '.' . $request->banner->extension();
         // $request->banner->move(public_path('images/banner'), $imageName);
 
-        $blogs = Blog::find($request->blog_id);
-        $blogs->blog = $request->blog;
-        $blogs->title = $request->title;
-        $blogs->details = $request->details;
-        $blogs->banner = $filename;
-        $blogs->save();
+        $up_blogs = Blog::find($request->blog_id);
+        $up_blogs->blog = $request->blog;
+        $up_blogs->title = $request->title;
+        $up_blogs->details = $request->details;
+        $up_blogs->banner = $filename;
+        $up_blogs->status = $status;
+        $up_blogs->save();
         toastr()->success('Update successfully!');
         return redirect('/all-blog');
     }

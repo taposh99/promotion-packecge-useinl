@@ -30,7 +30,7 @@ Route::middleware([
 Route::post('new-blog',[BlogController:: class,'blog'])->name('new.blog');
 Route::get('all-blog',[BlogController:: class,'allBlog'])->name('all.blog');
 Route::get('edit-blog/{id}',[BlogController:: class,'editblog'])->name('edit.blog');
-Route::post('/update-blog',[BlogController::class,'updateBlog'])->name('update.blog');
+Route::post('/update-blog',[BlogController::class,'update'])->name('update.blog');
 Route::post('delete-blog',[BlogController:: class,'deleteblog'])->name('delete.blog');
 
 

@@ -33,12 +33,13 @@
 
                             
                                 <label for="" class="col-sm-2 col-form-label">Banner:</label>
-                                <input type="file" id="banner" class="form-control" value="{{ $blog->banner }}"name="banner">
-                                <!-- <img src="/images/banner/{{ $blog->banner }}" width="55px" height="55px"> -->
+                                <input type="file" id="banner" class="form-control" name="banner">
 
                                 <img width="55px" height="55px" id="showImage" src="{{asset('images/banner')}}/{{ $blog->banner }}" alt="Card image cap">
 
-<br><br>
+                       
+                            <br>
+
 
                             <label for="details">Details:</label>
                             <textarea id="details" name="details">{{ $blog->details }}</textarea><br>

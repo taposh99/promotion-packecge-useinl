@@ -80,18 +80,17 @@ class BlogController extends Controller
             'blog' => Blog::find($id)
         ]);
     }
-    public function updateBlog(Request $request, Blog $blogs)
+    public function update(Request $request, Blog $blogs)
     {
 
-        // $imageName = time() . '.' . $request->banner->extension();
-        // $request->banner->move(public_path('images/banner'), $imageName);
-        
         $filename = '';
         if ($request->hasfile('banner')) {
             $file = $request->file('banner');
             $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/banner'), $filename);
         }
+        // $imageName = time() . '.' . $request->banner->extension();
+        // $request->banner->move(public_path('images/banner'), $imageName);
 
         $blogs = Blog::find($request->blog_id);
         $blogs->blog = $request->blog;

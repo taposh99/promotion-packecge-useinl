@@ -12,4 +12,5 @@ class Blog extends Model
     protected $casts = [
         'status' => 'boolean',
     ];
+    protected $fillable = ['status'];
 }

@@ -80,19 +80,18 @@ class BlogController extends Controller
             'blog' => Blog::find($id)
         ]);
     }
-    public function updateBlog(Request $request, Blog $blogs)
+    public function update(Request $request, Blog $blogs)
     {
+        if ($request->file('banner')) {
 
-        if($request->file('banner')){
-           
-            $file= $request->file('banner');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('images/banner'), $filename);
+            $file = $request->file('banner');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('images/banner'), $filename);
             $blogs['banner'] = $filename;
+        } else {
         }
-        else{
-            
-        }
+        $status = ($request->input('status') === 'active') ? true : false;
+
 
         // $imageName = time() . '.' . $request->banner->extension();
         // $request->banner->move(public_path('images/banner'), $imageName);
@@ -101,8 +100,10 @@ class BlogController extends Controller
         $blogs->blog = $request->blog;
         $blogs->title = $request->title;
         $blogs->details = $request->details;
+        $blogs->status = $request->status;
         // $blogs->banner = $imageName;
         $blogs->save();
+
         toastr()->success('Update successfully!');
         return redirect('/all-blog');
     }
@@ -110,12 +111,12 @@ class BlogController extends Controller
     {
         $blog = Blog::find($request->blog_id);
         $banner = str_replace('\\', '/', public_path('/images/banner/' . $blog->banner));
-        if (is_file($banner)){
+        if (is_file($banner)) {
             unlink($banner);
             $blog->delete();
             toastr()->success('Deleted  successfully!');
             return redirect()->route('all.blog');
-        }else {
+        } else {
             $blog->delete();
             toastr()->success('Deleted  successfully!');
             return back();

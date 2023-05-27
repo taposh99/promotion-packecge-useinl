@@ -37,12 +37,21 @@
 
                                 <img width="55px" height="55px" id="showImage" src="{{asset('images/banner')}}/{{ $blog->banner }}" alt="Card image cap">
 
-                    
+                            {{-- <label for="banner">Banner:</label>
+                            <input type="file" id="banner" name="banner" nullable>
+                            <img src="/images/banner/{{ $blog->banner }}" width="55px" height="55px"> --}}
                             <br>
 
 
                             <label for="details">Details:</label>
                             <textarea id="details" name="details">{{ $blog->details }}</textarea><br>
+
+                            <label class="">Status : </label>
+                                <select class="form-control" id="status" value="{{ $blog->status }} name="status">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                                
 
 
                 

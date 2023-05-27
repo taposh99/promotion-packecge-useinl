@@ -83,14 +83,21 @@ class BlogController extends Controller
     public function updateBlog(Request $request, Blog $blogs)
     {
 
-        $imageName = time() . '.' . $request->banner->extension();
-        $request->banner->move(public_path('images/banner'), $imageName);
+        // $imageName = time() . '.' . $request->banner->extension();
+        // $request->banner->move(public_path('images/banner'), $imageName);
+        
+        $filename = '';
+        if ($request->hasfile('banner')) {
+            $file = $request->file('banner');
+            $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/banner'), $filename);
+        }
 
         $blogs = Blog::find($request->blog_id);
         $blogs->blog = $request->blog;
         $blogs->title = $request->title;
         $blogs->details = $request->details;
-        $blogs->banner = $imageName;
+        $blogs->banner = $filename;
         $blogs->save();
         toastr()->success('Update successfully!');
         return redirect('/all-blog');

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Simple Project</title>
+    <title>Small blog Project</title>
 
     <link rel="stylesheet" href="{{asset('frontEndAsset')}}/css/bootstrap.css">
 </head>
@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center"> {{ session('message') }}</h1>
-            <a href="{{ route('dashboard') }}" class="btn btn-primary">Create New Blog</a>
+            <a href="{{ route('dashboard') }}" class="btn btn-primary">Create New</a>
         </div>
     </div>
     <br>
@@ -28,8 +28,8 @@
                     <table class="table table-hover table-bordered">
                         <tr>
                             <th>sl</th>
-                            <th>Blog List</th>
-                            <th>Tittle list</th>
+                            <th>Blog Item</th>
+                            <th>Tittle</th>
                             <th>Banner list</th>
                             <th>Details</th>
                             <th>status</th>
@@ -47,20 +47,32 @@
 
                             <!-- <td>
 
-                                    @if($blog->status==1)
-                                    <a href="{{ url('change-status/'.$blog->id) }}" class="btn btn-sm btn-success">Active</a>
-                                    @else
-                                    <a href="{{ url('change-status/'.$blog->id) }}" class="btn btn-sm btn-danger">Inactive</a>
-                                    @endif
-                                </td> -->
+                                @if($blog->status==1)
+                                <a href="{{ url('change-status/'.$blog->id) }}" class="btn btn-sm btn-success">Active</a>
+                                @else
+                                <a href="{{ url('change-status/'.$blog->id) }}" class="btn btn-sm btn-danger">Inactive</a>
+                                @endif
+                            </td> -->
                             <td>
+                                <div class="form-check form-switch">
+                                   
+                                    @if($blog->status==1)
+                                    <input class="form-check-input" type="checkbox" id="toggleButton" checked>
+                                    <label class="form-check-label" for="toggleButton" data-bs-toggle="collapse" data-bs-target=".inactive-text">a</label>
+                                    @else
+                                    <label class="form-check-label inactive-text collapse" for="toggleButton" data-bs-toggle="collapse" data-bs-target=".active-text">i</label>
+
+                                    @endif
+                                </div>
+                            </td>
+                            <!-- <td>
 
                                 @if ($blog->status == 1)
                                 <a href="#" class="btn btn-sm btn-success">Active</a>
                                 @else
                                 <a href="#" class="btn btn-sm btn-danger">Inactive</a>
                                 @endif
-                            </td>
+                            </td> -->
 
                             <td>
 
